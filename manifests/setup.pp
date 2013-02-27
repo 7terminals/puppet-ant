@@ -1,4 +1,9 @@
-define ant::setup ($source = undef, $deploymentdir = undef, $user = undef, $cachedir = "/var/lib/puppet/working-ant-${name}") {
+define ant::setup (
+  $source        = undef,
+  $deploymentdir = undef,
+  $user          = undef,
+  $pathfile      = '/etc/bashrc',
+  $cachedir      = "/var/lib/puppet/working-ant-${name}") {
   # working directory to untar ant
   file { $cachedir:
     ensure => 'directory',
@@ -35,5 +40,12 @@ define ant::setup ($source = undef, $deploymentdir = undef, $user = undef, $cach
     command => "cp -r extracted/apache-ant*/* ${deploymentdir} && chown -R ${user}:${user} ${deploymentdir}",
     creates => "${deploymentdir}/bin/ant",
     require => Exec["create_target_ant-${name}"],
+  }
+
+  exec { "update_path-${name}":
+    cwd     => '/',
+    command => "echo 'export PATH=\$PATH:${deploymentdir}/bin' >> ${pathfile}",
+    unless  => "grep 'export PATH=\$PATH:${deploymentdir}/bin' ${pathfile}",
+    require => Exec["move_ant-${name}"],
   }
 }
