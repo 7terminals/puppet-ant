@@ -1,0 +1,3 @@
+# puppet-ant #
+
+This is the puppet-ant module. It provides...
