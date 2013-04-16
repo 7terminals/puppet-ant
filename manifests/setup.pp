@@ -30,8 +30,11 @@ define ant::setup (
     fail('ensure parameter must be either absent or present')
   }
   
+
   if ($caller_module_name == undef) {
-    $caller_module_name = $module_name
+    $mod_name = $module_name
+  } else {
+    $mod_name = $caller_module_name
   }
 
   if ($ensure == 'present') {
@@ -49,7 +52,7 @@ define ant::setup (
     }
 
     file { "${cachedir}/${source}":
-      source  => "puppet:///modules/${caller_module_name}/${source}",
+      source  => "puppet:///modules/${mod_name}/${source}",
       require => File[$cachedir],
     }
 
