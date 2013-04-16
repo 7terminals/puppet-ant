@@ -4,7 +4,6 @@ ant::setup { "ant":
   deploymentdir => "/root/ant",
   user          => "root",
   pathfile      => '/root/.bashrc',
-  cachedir      => "/var/lib/puppet/working-ant-${name}",
   ensure        => 'present'
 }
 
