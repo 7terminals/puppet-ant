@@ -9,14 +9,14 @@
   "version": "",
   "checksums": {
     "Modulefile": "655fe81364aa78003a18ee6ed2d38dfe",
-    "README.markdown": "6e299d547343604038bfe7f41e227522",
+    "README.markdown": "6e3b7449d42ab8364defd7d2f2b9ec6b",
     "README.md": "cea345f2c71dd1f130e2cfd1c1fe5a71",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "manifests\\init.pp": "1d213055ec7ab44f0268bec8d4667250",
-    "manifests\\setup.pp": "a1c3b694cf333820bb1540fff3dfc1f8",
+    "manifests\\setup.pp": "1eae94b53a732e76ae4c7a4e572f8574",
     "spec\\spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec\\spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
-    "tests\\init.pp": "1c40d1809e25f6eec9f89c4261647985"
+    "tests\\init.pp": "5bae995db8ef9f1dc6df9e5e6666e6ac"
   },
   "dependencies": []
 }

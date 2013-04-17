@@ -2,7 +2,6 @@ ant
 ====
 
 
-
 Overview
 --------
 
@@ -20,39 +19,43 @@ Setup
 **What ant affects:**
 
 * installation directory for Ant
-* bashrc file of the user
+* bashrc file of the user or /etc/bashrc if parameter pathfile is not set 
+* ToDo - some more info about keeping apache Ant in its own folder so that on ensure => absent, someone' /usr/local does not disappear
 	
 ### Beginning with Apache Ant
 
 To setup Apache Ant on a server
 
-    ant::setup { "ant":
+    ant::setup { "example.com-ant":
       ensure        => 'present',
       source        => 'apache-ant-1.9.0-bin.tar.gz',
-      deploymentdir => '/path/to/install/ant',
-      user          => 'user',
-      pathfile      => '/path/to/bashrc/to/be/updated'
+      deploymentdir => '/home/example.com/apps/apache-ant',
+      user          => 'example.com',
+      pathfile      => '/home/example.com/.bashrc'
     }
 
 Usage
 ------
 
-The `ant` definition has several parameters to assist installation of ant.
+The `ant::setup` resource definition has several parameters to assist installation of ant.
 
 **Parameters within `ant`**
 
 ####`ensure`
 
-This parameter specifies whether ant should be deployed to the deployment directory or not.
-Valid arguments are "present" or "absent"
+This parameter specifies whether ant should be deployed to the deployment directory and bashrc file is updated or not.
+Valid arguments are "present" or "absent". Default 
+
 
 ####`source`
 
-This parameter specifies the source for the ant archive.
+This parameter specifies the source for the ant archive. 
+This file must be in the files directory in the caller module. 
+Only .tar.gz source archives are supported.
 
 ####`deploymentdir`
 
-This parameter specifies where ant will be installed.
+This parameter specifies the directory where ant will be installed.
 
 ####`user`
 
@@ -77,6 +80,11 @@ The module has been tested on:
 
 Testing on other platforms has been light and cannot be guaranteed. 
 
+Development
+------------
+
+Bug Reports
+-----------
 
 Release Notes
 --------------
