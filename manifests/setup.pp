@@ -29,7 +29,6 @@ define ant::setup (
   if !($ensure in ['absent', 'present']) {
     fail('ensure parameter must be either absent or present')
   }
-  
 
   if ($caller_module_name == undef) {
     $mod_name = $module_name

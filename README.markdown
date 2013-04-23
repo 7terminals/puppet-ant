@@ -44,7 +44,9 @@ The `ant::setup` resource definition has several parameters to assist installati
 ####`ensure`
 
 This parameter specifies whether ant should be deployed to the deployment directory and bashrc file is updated or not.
-Valid arguments are "present" or "absent". Default 
+Valid arguments are "present" or "absent".
+
+Default is present.
 
 
 ####`source`
