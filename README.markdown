@@ -53,7 +53,7 @@ Default is present.
 
 This parameter specifies the source for the ant archive. 
 This file must be in the files directory in the caller module. 
-Only .tar.gz source archives are supported.
+**Only .tar.gz source archives are supported.**
 
 ####`deploymentdir`
 
