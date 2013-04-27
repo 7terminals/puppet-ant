@@ -59,7 +59,7 @@ This file must be in the files directory in the caller module.
 
 This parameter specifies the directory where ant will be installed.
 
-Note: If deploymentdir is set to /usr/local/, and you want to remove this installation in the future, setting ensure => 'absent' will cause the entire directory, i. e. /usr/local/ to be deleted permanently.
+Warning: If deploymentdir is set to /usr/local/, and you want to remove this installation in the future, setting ensure => 'absent' will cause the entire directory, i. e. /usr/local/ to be deleted permanently. It is strongly recommended to set deploymentdir to some dedicated directory e.g /opt/apache-ant or /home/example.com/apps/apache-ant
 
 ####`user`
 
