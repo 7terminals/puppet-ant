@@ -1,21 +1,25 @@
 define ant::setup (
   $source        = undef,
-  $deploymentdir = undef,
+  $deploymentdir = '/opt/apache-ant',
   $user          = undef,
   $pathfile      = '/etc/bashrc',
   $cachedir      = "/var/lib/puppet/working-ant-${name}",
   $ensure        = 'present') {
-  # we support only Debian and RedHat
+  # We support only Debian and RedHat
   case $::osfamily {
     Debian  : { $supported = true }
     RedHat  : { $supported = true }
     default : { fail("The ${module_name} module is not supported on ${::osfamily} based systems") }
   }
 
-  # validate parameters
+  # Validate parameters
 
   if ($source == undef) {
     fail('source parameter must be set')
+  }
+
+  if !('.tar.gz' in $source) {
+    fail('source must be a .tar.gz archive of Apache Ant')
   }
 
   if ($deploymentdir == undef) {
@@ -47,8 +51,7 @@ define ant::setup (
 
     # resource defaults for Exec
     Exec {
-      path => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'],
-    }
+      path => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'], }
 
     file { "${cachedir}/${source}":
       source  => "puppet:///modules/${mod_name}/${source}",
