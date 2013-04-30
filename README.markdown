@@ -94,7 +94,9 @@ Release Notes
 --------------
 
 **0.0.2**
+
 Updated documentation in class
 
 **0.0.1**
+
 First initial release.
