@@ -79,11 +79,18 @@ define ant::setup (
       require => Exec["create_target_ant-${name}"],
     }
 
+    exec { "update_ant_home-${name}":
+      cwd     => '/',
+      command => "echo 'export ANT_HOME=${deploymentdir}' >> ${pathfile}",
+      unless  => "grep 'export ANT_HOME=${deploymentdir}' ${pathfile}",
+      require => Exec["move_ant-${name}"],
+    }
+
     exec { "update_path-${name}":
       cwd     => '/',
-      command => "echo 'export PATH=\$PATH:${deploymentdir}/bin' >> ${pathfile}",
-      unless  => "grep 'export PATH=\$PATH:${deploymentdir}/bin' ${pathfile}",
-      require => Exec["move_ant-${name}"],
+      command => "echo 'export PATH=\${ANT_HOME}/bin:\${PATH}' >> ${pathfile}",
+      unless  => "grep 'export PATH=\${ANT_HOME}/bin:\${PATH}' ${pathfile}",
+      require => Exec["update_ant_home-${name}"],
     }
   } else {
     file { $deploymentdir:
